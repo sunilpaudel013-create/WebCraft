@@ -1,0 +1,42 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+.calculator-card{
+    background: #555;
+    padding:30px;
+    width:500px;
+    color:white;
+    margin:20px;
+    font-size:16px;
+}
+.dateInput{
+    border:none;
+    padding:5px;
+    border-radius:5px;
+    font-size:14px;
+    margin-left:20px;
+    margin-bottom:10px;
+}
+
+button{
+    background-color:lightgreen;
+    color:black;
+    padding:4px;
+    border:none;
+    outline:none;
+    border-radius:4px;
+    font-size:14px;
+    margin-bottom:10px;
+
+}
+button:active{
+    color:lightgreen;
+    background-color: black;
+}
+button:hover{
+    background-color:white;
+}
