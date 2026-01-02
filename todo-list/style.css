@@ -1,118 +1,123 @@
 *{
-    margin:0px;
+    margin:0;
     padding:0;
-    font-family:'Poppins',sans-serif;
     box-sizing: border-box;
+    font-family:'Poppins',sans-serif;
 }
+body {
+    background: linear-gradient(135deg, #a6cdc6 0%, #18191f 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container{
     width:100%;
-    min-height:100vh;
-    background:linear-gradient(135deg,#6EE7B7, #3B82F6);
+    max-width:450px;
     padding:20px;
 }
 
-
-.todo-app{
-    width:100%;
-    max-width:500px;
-    background: #fff;
-    margin:100px auto 20px;
-    padding: 40px 30px 70px;
-    border-radius:20px;
-    
+.todo-wrapper {
+    background: rgb(182, 180, 180);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
-
-.todo-app h1{
-    color: #002765;
-    display: flex;
-    align-items: center;
+h2{
+    color:#333;
+    text-align:center;
     margin-bottom:20px;
-    
-}
-.todo-app img{
-    width:40px;
-    margin-left:20px;
-    
-}
-
-.row{
     display:flex;
     align-items: center;
-    justify-content: space-between;
-    background:#edeef0;
-    border-radius: 30px;
-    padding-left:20px;
-    margin-bottom:25px;
-}
-.row input{
-    flex:1;
-    border:none;
-    outline:none;
-    background:transparent;
-    padding:10px;
-    font-weight:400;
-    font-size:16px;
-}
+    justify-content: center;
 
-button{
-    border:none;
-    outline:none;
-    padding:16px 50px;
-    background-color:orange;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    border-radius:40px;
 }
-button:active{
-    background-color: #fff;
-    color:orange;
-}
-
-ul li{
-    list-style: none;
-    font-size: 17px;
-    padding:12px 8px 8px 50px;
-    user-select:none;
-    cursor:pointer;
-    position:relative;
-}
-ul li::before{
-    content: '';
-    position:absolute;
-    height:26px;
-    width:26px;
-    border-radius:50%;
-    background-image: url(images/unchecked.png);
-    background-size:cover;
-    background-position:center;
-    top:8px;
-    left:18px;
-}
-
-ul li.checked{
-    color:#555;
-    text-decoration:line-through;
-}
-
-ul li.checked::before{
-    background-image: url(images/checked.png);
-}
-
-ul li span{
-    position:absolute;
-    right:0;
-    top:5px;
+h2 img{
     width:40px;
-    height:40px;
-    font-size:22px;
-    color:#555;
-    line-height:40px;
-    text-align: center;
-    border-radius:50%;
+    margin-left:20px;
 }
 
-ul li span:hover{
-    background:gray;
-    color:white;
+.input-group{
+    display: flex;
+    gap:10px;
+    margin-bottom:20px;
 }
+
+#todoInput{
+    flex:1;
+    outline:none;
+    border:none;
+    font-size:16px;
+    padding:8px;
+    border-radius:10px;
+}
+#todoInput:focus {
+    border-color: #9face6;
+}
+#addBtn{
+    background-color:#4caf50;
+    color:white;
+    border:none;
+    outline:none;
+    padding:12px 20px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+#addBtn:hover{
+    background-color:#45a049;
+}
+
+#addBtn:active{
+    background-color: white;
+    color:green;
+}
+
+#todoList{
+    list-style:none;
+}
+li{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    padding:10px;
+    border-bottom:1px solid #969090;
+    transition: transform 0.2s, background 0.2s;
+}
+
+li:hover{
+    transform: scale(1.1);
+}
+li.complete{
+    background:#e8f5e9;
+}
+li.complete span {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* 6. Buttons Inside the List */
+.actions {
+    display: flex;
+    gap: 5px;
+}
+.doneBtn, .deleteBtn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.doneBtn {
+    background-color: #2196F3;
+}
+
+.deleteBtn {
+    background-color: #ff4d4d;
+}
+
+.doneBtn:hover { background-color: #1976D2; }
+.deleteBtn:hover { background-color: #cc0000; }

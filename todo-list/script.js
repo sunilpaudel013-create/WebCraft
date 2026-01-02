@@ -1,54 +1,81 @@
-const input = document.getElementById('input-box');
-const todolist = document.getElementById('list-container'); // Keep this name consistent
-const addBtn = document.querySelector('.addBtn');
+const input = document.getElementById('todoInput');
+const addBtn = document.getElementById('addBtn');
+const todoList = document.getElementById('todoList');
 
-addBtn.addEventListener('click', () => {
-    const taskvalue = input.value;
+// --- 1. Load data as soon as the script runs ---
+window.onload = loadData;
 
-    if (taskvalue.trim() !== "") {
-        const li = document.createElement('li');
-        li.textContent = taskvalue;
-
-        todolist.appendChild(li);
-        let span = document.createElement("span");
-        span.innerHTML = "\u00d7"; // This is the 'x' icon
-        li.appendChild(span);
-
-        input.value = "";
-        input.classList.remove('error'); // Remove red glow on success
-        saveData();
-    } else {
-        // --- THE RED GLOW ---
-        input.classList.add('error');
-        alert("Enter the task please");
+function addTask(e) {
+    if (e) e.preventDefault();
+    
+    const taskValue = input.value;
+    if (taskValue === "") {
+        alert("Enter some task");
+        return;
     }
-});
+
+    createTaskElement(taskValue, false);
+    input.value = "";
+    saveData(); // Save after adding
+}
+
+// Helper function to create the HTML row
+function createTaskElement(text, isCompleted) {
+    const li = document.createElement('li');
+    if (isCompleted) li.classList.add('complete');
+
+    li.innerHTML = `
+        <span>${text}</span>
+        <div class="actions">
+            <button class="doneBtn">Done</button>
+            <button class="deleteBtn">Delete</button>
+        </div>
+    `;
+
+    const doneBtn = li.querySelector('.doneBtn');
+    const deleteBtn = li.querySelector('.deleteBtn');
+
+    doneBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        li.classList.toggle('complete');
+        saveData(); // Save after toggling done
+    });
+
+    deleteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        li.remove();
+        saveData(); // Save after deleting
+    });
+
+    todoList.appendChild(li);
+}
+
+// --- 2. Save function ---
+function saveData() {
+    const tasks = [];
+    document.querySelectorAll('#todoList li').forEach(li => {
+        tasks.push({
+            text: li.querySelector('span').innerText,
+            completed: li.classList.contains('complete')
+        });
+    });
+    localStorage.setItem("myTodoList", JSON.stringify(tasks));
+}
+
+// --- 3. Load function ---
+function loadData() {
+    const savedTasks = JSON.parse(localStorage.getItem("myTodoList"));
+    if (savedTasks) {
+        savedTasks.forEach(task => {
+            createTaskElement(task.text, task.completed);
+        });
+    }
+}
+
+addBtn.addEventListener('click', addTask);
 
 input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        addBtn.click();
+        addTask(e);
     }
 });
-
-todolist.addEventListener('click', (e) => {
-    if (e.target.tagName === "LI") {
-        e.target.classList.toggle("checked");
-        saveData(); // Save status (checked/unchecked)
-    } 
-    else if (e.target.tagName === 'SPAN') {
-        e.target.parentElement.remove();
-        saveData(); // Save after deleting
-    }
-});
-
-// Use 'todolist' here to match your variable at the top
-function saveData() {
-    localStorage.setItem("data", todolist.innerHTML);
-}
-
-function showList() {
-    todolist.innerHTML = localStorage.getItem("data") || ""; 
-}
-
-// CRITICAL: Call this so data appears when you open the page!
-showList();
