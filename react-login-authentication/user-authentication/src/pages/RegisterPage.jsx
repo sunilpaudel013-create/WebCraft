@@ -1,4 +1,5 @@
 import './RegisterPage.css'
+import InputField from '../components/InputField';
 
 function RegisterPage(){
     return(
@@ -7,21 +8,13 @@ function RegisterPage(){
         <div className="register-container">
             <h2>Register</h2>
             <form action="">
-                <div className="input-group">
-                    <label htmlFor="fullName">Full Name</label>
-                    <input type="fullName" placeholder='Enter the full Name' required />
-                </div>
 
-                <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" placeholder='Enter the email' required />
-                </div>
+                <InputField type='text' label='Name' />
+                
 
-                <div className="input-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder='Enter the password' required />
-                </div>
+                <InputField type='email' label='Email' />
 
+                <InputField type='password' label='Password' />
 
                 <button type='submit'>Register</button>
 

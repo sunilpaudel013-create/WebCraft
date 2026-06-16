@@ -1,19 +1,13 @@
-
+import InputField from '../components/InputField';
 import './LoginPage.css'
 function LoginPage() {
     return (
         <div className="login-container">
             <h2>Login</h2>
             <form>
-                <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" placeholder='Enter the email' required />
-                </div>
+                <InputField type='email' label='Email' />
 
-                <div className="input-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder='Enter the password' required />
-                </div>
+                <InputField type='password' label='Password' />
 
                 <button type='submit' className='login-btn'>login</button>
 
