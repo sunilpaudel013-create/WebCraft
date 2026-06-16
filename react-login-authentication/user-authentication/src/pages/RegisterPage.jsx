@@ -1,10 +1,17 @@
+import './RegisterPage.css'
 
-import './LoginPage.css'
-function LoginPage() {
-    return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form>
+function RegisterPage(){
+    return(
+        <>
+
+        <div className="register-container">
+            <h2>Register</h2>
+            <form action="">
+                <div className="input-group">
+                    <label htmlFor="fullName">Full Name</label>
+                    <input type="fullName" placeholder='Enter the full Name' required />
+                </div>
+
                 <div className="input-group">
                     <label htmlFor="email">Email</label>
                     <input type="email" placeholder='Enter the email' required />
@@ -15,16 +22,17 @@ function LoginPage() {
                     <input type="password" placeholder='Enter the password' required />
                 </div>
 
-                <button type='submit' className='login-btn'>login</button>
+
+                <button type='submit'>Register</button>
 
                 <div className="extra-links">
                     <p><a href="#">Forgot Password?</a></p>
-                    <p>Don't have an account? <a href="/">Register</a></p>
+                    <p>Already have an account? <a href="/login">Login</a></p>
                 </div>
-
             </form>
         </div>
-    )
+        </>
+    );
 }
 
-export default LoginPage;
+export default RegisterPage;
